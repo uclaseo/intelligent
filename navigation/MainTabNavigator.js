@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import LoggingScreen from '../screens/LoggingScreen';
@@ -90,7 +90,7 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = '';
 
-const tabNavigator = createBottomTabNavigator(
+const tabNavigator = createMaterialTopTabNavigator(
   {
     LoggingStack,
     HomeStack,
@@ -98,15 +98,20 @@ const tabNavigator = createBottomTabNavigator(
     SettingsStack,
   },
   {
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
     tabBarOptions: {
-      activeBackgroundColor: Colors.black,
-      inactiveBackgroundColor: Colors.black,
       style: {
-        borderTopColor: Colors.black,
+        backgroundColor: Colors.black,
       },
       safeAreaInset: {
         bottom: 'never',
       },
+      indicatorStyle: {
+        backgroundColor: Colors.black,
+      },
+      showIcon: true,
+      showLabel: false,
     },
   },
 );
