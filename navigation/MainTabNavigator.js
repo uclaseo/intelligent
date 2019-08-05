@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import LoggingScreen from '../screens/LoggingScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -11,6 +12,26 @@ const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
+
+const LoggingStack = createStackNavigator(
+  {
+    Logging: LoggingScreen,
+  },
+  config,
+);
+
+LoggingStack.navigationOptions = {
+  tabBarLabel: 'Log',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      MaterialCommunityIcons
+      focused={focused}
+      name="chart-line-variant"
+    />
+  ),
+};
+
+LoggingStack.path = '';
 
 const HomeStack = createStackNavigator(
   {
@@ -68,6 +89,7 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
+  LoggingStack,
   HomeStack,
   LinksStack,
   SettingsStack,
