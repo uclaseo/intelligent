@@ -1,11 +1,19 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import React, { useState, Fragment } from 'react';
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
+
+import Colors from './constants/Colors';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -20,10 +28,16 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <Fragment>
+        <SafeAreaView style={{ flex:0, backgroundColor: Colors.black }} />
+        <SafeAreaView style={{ flex:1, backgroundColor: Colors.black }}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+            <AppNavigator />
+          </View>
+        </SafeAreaView>
+
+      </Fragment>
     );
   }
 }
