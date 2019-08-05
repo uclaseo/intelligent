@@ -4,9 +4,10 @@ import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navig
 
 import TabBarIcon from '../components/TabBarIcon';
 import LoggingScreen from '../screens/LoggingScreen';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import CalendarScreen from '../screens/CalendarScreen';
+// import HomeScreen from '../screens/HomeScreen';
+// import LinksScreen from '../screens/LinksScreen';
+// import SettingsScreen from '../screens/SettingsScreen';
 
 import Colors from '../constants/Colors';
 
@@ -35,85 +36,111 @@ LoggingStack.navigationOptions = {
 
 LoggingStack.path = '';
 
-const HomeStack = createStackNavigator(
+const CalendarStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Calendar: CalendarScreen,
   },
-  config
+  config,
 );
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+CalendarStack.navigationOptions = {
+  tabBarLabel: 'Calendar',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? 'ios-calendar'
+          : 'md-calendar'
       }
     />
   ),
 };
 
-HomeStack.path = '';
+CalendarStack.path = '';
 
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen,
-  },
-  config
-);
+// const HomeStack = createStackNavigator(
+//   {
+//     Home: HomeScreen,
+//   },
+//   config
+// );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
+
+// HomeStack.navigationOptions = {
+//   tabBarLabel: 'Home',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-information-circle${focused ? '' : '-outline'}`
+//           : 'md-information-circle'
+//       }
+//     />
+//   ),
+// };
+
+// HomeStack.path = '';
+
+// const LinksStack = createStackNavigator(
+//   {
+//     Links: LinksScreen,
+//   },
+//   config
+// );
+
+// LinksStack.navigationOptions = {
+//   tabBarLabel: 'Links',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+//   ),
+// };
+
+// LinksStack.path = '';
+
+// const SettingsStack = createStackNavigator(
+//   {
+//     Settings: SettingsScreen,
+//   },
+//   config
+// );
+
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Settings',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+//   ),
+// };
+
+// SettingsStack.path = '';
+const routeConfigs = {
+  LoggingStack,
+  CalendarStack,
 };
 
-LinksStack.path = '';
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen,
+const tabNavigatorConfig = {
+  tabBarPosition: 'bottom',
+  swipeEnabled: true,
+  tabBarOptions: {
+    style: {
+      backgroundColor: Colors.black,
+    },
+    safeAreaInset: {
+      bottom: 'never',
+    },
+    indicatorStyle: {
+      backgroundColor: Colors.black,
+    },
+    showIcon: true,
+    showLabel: false,
   },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
 };
 
-SettingsStack.path = '';
 
 const tabNavigator = createMaterialTopTabNavigator(
-  {
-    LoggingStack,
-    HomeStack,
-    LinksStack,
-    SettingsStack,
-  },
-  {
-    tabBarPosition: 'bottom',
-    swipeEnabled: true,
-    tabBarOptions: {
-      style: {
-        backgroundColor: Colors.black,
-      },
-      safeAreaInset: {
-        bottom: 'never',
-      },
-      indicatorStyle: {
-        backgroundColor: Colors.black,
-      },
-      showIcon: true,
-      showLabel: false,
-    },
-  },
+  routeConfigs,
+  tabNavigatorConfig,
 );
 
 tabNavigator.path = '';

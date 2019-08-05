@@ -1,9 +1,15 @@
 const tintColor = '#2f95dc';
+const black = '#212121';
+const blue = '#82B1FF';
+const yellow = '#F4FF81';
+const red = '#FF8A80';
+const green = '#B9F6CA';
+const pink = '#FF80AB';
 
 export default {
   tintColor,
   tabIconDefault: '#ccc',
-  tabIconSelected: tintColor,
+  tabIconSelected: blue,
   tabBar: '#fefefe',
   errorBackground: 'red',
   errorText: '#fff',
@@ -11,5 +17,10 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  black: '#212121',
+  black,
+  blue,
+  yellow,
+  red,
+  green,
+  pink,
 };

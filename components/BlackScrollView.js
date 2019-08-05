@@ -10,7 +10,7 @@ import Colors from '../constants/Colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'ios' ? 10 : 35,
+    paddingTop: Platform.OS === 'ios' ? 10 : 30,
     backgroundColor: Colors.black,
     color: 'yellow',
   },
