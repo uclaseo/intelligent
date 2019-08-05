@@ -25,9 +25,9 @@ export default class List extends Component {
       <TouchableHighlight
         onPress={() => this.handleOnPressItem(item)}
         style={{
-          borderRadius: 10,
-          marginTop: 10,
-          marginBottom: 10,
+          borderRadius: 6,
+          marginTop: 7,
+          marginBottom: 7,
         }}
         underlayColor={Colors.white}
         activeOpacity={0.3}
@@ -36,14 +36,14 @@ export default class List extends Component {
           style={{
             height: 80,
             flexDirection: 'row',
-            backgroundColor: Colors.red,
-            borderRadius: 10,
+            backgroundColor: Colors.green,
+            borderRadius: 6,
             padding: 10,
           }}
         >
           <Text
             style={{
-              color: Colors.white,
+              color: Colors.black,
             }}
           >
             {item.name}

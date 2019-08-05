@@ -28,20 +28,51 @@ const dummyTrainees = [
   },
   {
     id: '2',
-    name: 'inseok',
+    name: 'junseok',
     phone: '(818)919-5883',
   },
   {
     id: '3',
-    name: 'inseok',
+    name: 'alex',
     phone: '(818)919-5883',
   },
   {
     id: '4',
-    name: 'inseok',
+    name: 'eric',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '5',
+    name: 'dong',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '6',
+    name: 'chris',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '7',
+    name: 'james',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '8',
+    name: 'miguel',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '9',
+    name: 'jose',
     phone: '(818)919-5883',
   },
 ];
+
+const styles = StyleSheet.create({
+  listContainer: {
+    padding: 15,
+  },
+});
 
 export default class LoggingScreen extends React.Component {
   constructor(props) {
@@ -73,7 +104,9 @@ export default class LoggingScreen extends React.Component {
     const { isModalVisible } = this.state;
     return (
       <BlackScrollView>
-        { this.renderTrainees() }
+        <ScrollView style={styles.listContainer}>
+          { this.renderTrainees() }
+        </ScrollView>
         {
           isModalVisible
             ? (
