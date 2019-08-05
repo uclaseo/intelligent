@@ -5,6 +5,7 @@ import {
   Text,
 } from 'react-native';
 
+import List from '../components/List';
 import TraineeScreen from './TraineeScreen';
 
 import BlackScrollView from '../components/BlackScrollView';
@@ -19,6 +20,29 @@ import Colors from '../constants/Colors';
 //   },
 // });
 
+const dummyTrainees = [
+  {
+    id: '1',
+    name: 'inseok',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '2',
+    name: 'inseok',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '3',
+    name: 'inseok',
+    phone: '(818)919-5883',
+  },
+  {
+    id: '4',
+    name: 'inseok',
+    phone: '(818)919-5883',
+  },
+];
+
 export default class LoggingScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +51,17 @@ export default class LoggingScreen extends React.Component {
     };
   }
 
-  onPress = () => {
+  renderTrainees = () => {
+    return (
+      <List
+        openModal={this.openModal}
+      >
+        {dummyTrainees}
+      </List>
+    );
+  }
+
+  openModal = () => {
     this.setState({ isModalVisible: true });
   }
 
@@ -39,15 +73,7 @@ export default class LoggingScreen extends React.Component {
     const { isModalVisible } = this.state;
     return (
       <BlackScrollView>
-        {/**
-         * Go ahead and delete ExpoLinksView and replace it with your content;
-         * we just wanted to provide you with some helpful links.
-         */}
-        <Text style={{ color: Colors.blue }}>aaaaaa</Text>
-        <Text style={{ color: Colors.yellow }}>aaaaaaa</Text>
-        <Text style={{ color: Colors.red }}>aaaaaaa</Text>
-        <Text style={{ color: Colors.green }}>aaaaaaa</Text>
-        <Text style={{ color: Colors.pink }} onPress={this.onPress}>aaaaaaa</Text>
+        { this.renderTrainees() }
         {
           isModalVisible
             ? (
