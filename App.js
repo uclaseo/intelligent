@@ -29,8 +29,8 @@ export default function App(props) {
   } else {
     return (
       <Fragment>
-        <SafeAreaView style={{ flex:0, backgroundColor: Colors.black }} />
-        <SafeAreaView style={{ flex:1, backgroundColor: Colors.black }}>
+        <SafeAreaView style={{ flex: 0, backgroundColor: Colors.black }} />
+        <SafeAreaView style={{ flex: 1, backgroundColor: Colors.black }}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
             <AppNavigator />
