@@ -1,5 +1,6 @@
 const tintColor = '#2f95dc';
 const black = '#212121';
+const lightGray = '#BDBDBD';
 const white = '#FAFAFA';
 const blue = '#82B1FF';
 const yellow = '#F4FF81';
@@ -19,6 +20,7 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   black,
+  lightGray,
   white,
   blue,
   yellow,

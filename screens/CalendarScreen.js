@@ -8,6 +8,7 @@ import {
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 import BlackView from '../components/BlackView';
+import CircleButton from '../components/CircleButton';
 import Colors from '../constants/Colors';
 
 const dummyItems = {
@@ -64,6 +65,9 @@ const agendaStyle = {
 };
 
 const agendaTheme = {
+  selectedDayBackgroundColor: Colors.red,
+  backgroundColor: Colors.white,
+  dotColor: Colors.blue,
   'stylesheet.calendar.header': {
     monthText: {
       marginTop: 15,
@@ -76,6 +80,10 @@ const agendaTheme = {
       // marginBottom: 32,
     },
   },
+  agendaTodayColor: Colors.blue,
+  agendaKnobColor: Colors.green,
+  agendaDayTextColor: Colors.lightGray,
+  agendaDayNumColor: Colors.lightGray,
 };
 
 export default class LoggingScreen extends Component {
@@ -114,6 +122,10 @@ export default class LoggingScreen extends Component {
     return row1.text !== row2.text;
   }
 
+  addEvent = () => {
+    console.log('addEvent');
+  }
+
   render() {
     const currentDateString = this.getCurrentTime();
     return (
@@ -129,6 +141,10 @@ export default class LoggingScreen extends Component {
             theme={agendaTheme}
           />
         </View>
+        <CircleButton
+          onPress={this.addEvent}
+          title="+"
+        />
       </BlackView>
     );
   }
