@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
+  Platform,
   View,
   ScrollView,
   StyleSheet,
   Text,
+  DatePickerIOS,
+  DatePickerAndroid,
+  TimePickerAndroid,
 } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import BlackView from '../components/BlackView';
 import CircleButton from '../components/CircleButton';
@@ -57,6 +63,9 @@ const styles = StyleSheet.create({
   item: {
     fontSize: 13,
   },
+  datePickerIOS: {
+    backgroundColor: Colors.red,
+  }
 });
 
 const agendaStyle = {
@@ -87,6 +96,10 @@ const agendaTheme = {
 };
 
 export default class LoggingScreen extends Component {
+  state = {
+    datePickerIOS: false,
+  };
+
   getCurrentTime = () => {
     const currentDate = new Date();
     const currentDateString = new Date(currentDate.getTime() - (currentDate.getTimezoneOffset() * 60000 )).toISOString().split('T')[0];
@@ -112,21 +125,45 @@ export default class LoggingScreen extends Component {
     );
   }
 
-  // renderEmptyDate = () => {
-  //   return (
-  //     <Text>Empty</Text>
-  //   );
-  // }
-
   rowHasChanged = (row1, row2) => {
     return row1.text !== row2.text;
   }
 
-  addEvent = () => {
-    console.log('addEvent');
+  addEvent = async () => {
+    try {
+      if (Platform.OS === 'ios') {
+        return this.setState({
+          datePickerIOS: true,
+        });
+      }
+      const { action, year, month, day } = await DatePickerAndroid.open();
+      if (action !== DatePickerAndroid.dismissedAction) {
+        // Selected year, month (0-11), day
+      }
+      const { actionB, hour, minute } = await TimePickerAndroid.open();
+      if (actionB !== TimePickerAndroid.dismissedAction) {
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  setDateIOS = (newDate) => {
+    console.log(newDate);
+    this.setState({
+      datePickerIOS: false,
+    });
+  }
+
+  saveDateIOS = () => {
+    this.setState({
+      datePickerIOS: false,
+    });
   }
 
   render() {
+    const { datePickerIOS } = this.state;
     const currentDateString = this.getCurrentTime();
     return (
       <BlackView>
@@ -143,8 +180,39 @@ export default class LoggingScreen extends Component {
         </View>
         <CircleButton
           onPress={this.addEvent}
-          title="+"
-        />
+        >
+          <MaterialCommunityIcons
+            name="plus"
+            size={26}
+            style={{ marginBottom: -3 }}
+            color={Colors.white}
+          />
+        </CircleButton>
+        {
+          datePickerIOS
+            ? (
+              <Fragment>
+                <DatePickerIOS
+                  date={new Date()}
+                  minuteInterval={5}
+                  onDateChange={this.setDateIOS}
+                  style={styles.datePickerIOS}
+                />
+                <CircleButton
+                  onPress={this.saveDateIOS}
+                >
+                  <MaterialCommunityIcons
+                    name="check"
+                    size={26}
+                    style={{ marginBottom: -3 }}
+                    color={Colors.white}
+                  />
+                </CircleButton>
+              </Fragment>
+            )
+            : null
+          }
+
       </BlackView>
     );
   }
