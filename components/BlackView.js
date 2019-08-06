@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Platform,
-  ScrollView,
+  View,
   StyleSheet,
 } from 'react-native';
 
@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
 
 export default function LoggingScreen(props) {
   return (
-    <ScrollView
+    <View
       style={{
         ...styles.container,
       }}
     >
       {props.children}
-    </ScrollView>
+    </View>
   );
 }
 
