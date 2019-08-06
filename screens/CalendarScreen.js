@@ -12,29 +12,26 @@ import Colors from '../constants/Colors';
 
 const dummyItems = {
   '2019-08-05': [
-    {text: '1'},
-    {text: '2'},
-    {text: '3'},
-    {text: '4'},
-    {text: '5'},
-    {text: '6'},
-    {text: '7'},
-    {text: '8'},
-    {text: '0'},
-    {text: '00'},
-    {text: '000'},
-    {text: '0000'},
-    {text: '000000'},
-    {text: '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'},
+    { trainer: '선호', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '여환', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '선호', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '동영', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '주열', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '여환', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '여환', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '주열', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '주열', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '주열', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '선호', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '선호', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '동영', trainee: '인석', time: '3:00pm - 4:000pm' },
+    { trainer: '동영', trainee: '인석', time: '3:00pm - 4:000pm' },
   ],
   '2019-08-06': [
-    {text: '999'}
+    { trainer: '선호', trainee: '인석', time: '3:00pm - 4:000pm' },
   ],
   '2019-08-07': [
-    {text: '07070707'}
-  ],
-  '2019-08-10': [
-
+    { trainer: '여환', trainee: '인석', time: '3:00pm - 4:000pm' },
   ],
 };
 
@@ -46,15 +43,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.yellow,
     flex: 1,
     justifyContent: 'center',
+    borderRadius: 6,
   },
   firstItem: {
-    fontSize: 30,
+    fontSize: 15,
   },
   itemContainer: {
     flex: 1,
+    marginTop: 5,
+    marginBottom: 5,
   },
   item: {
-    fontSize: 20,
+    fontSize: 13,
   },
 });
 
@@ -90,7 +90,7 @@ export default class LoggingScreen extends Component {
       return (
         <View style={styles.firstItemContainer}>
           <Text style={styles.firstItem}>
-            {item.text}
+            {item.trainer} - {item.time} : {item.trainee}
           </Text>
         </View>
       );
@@ -98,17 +98,17 @@ export default class LoggingScreen extends Component {
     return (
       <View style={styles.itemContainer}>
         <Text style={styles.item}>
-          {item.text}
+          {item.trainer} - {item.time} : {item.trainee}
         </Text>
       </View>
     );
   }
 
-  renderEmptyDate = () => {
-    return (
-      <Text>Empty</Text>
-    );
-  }
+  // renderEmptyDate = () => {
+  //   return (
+  //     <Text>Empty</Text>
+  //   );
+  // }
 
   rowHasChanged = (row1, row2) => {
     return row1.text !== row2.text;
@@ -122,7 +122,7 @@ export default class LoggingScreen extends Component {
           <Agenda
             items={dummyItems}
             renderItem={this.renderItem}
-            renderEmptyDate={this.renderEmptyDate}
+            // renderEmptyDate={this.renderEmptyDate}
             rowHasChanged={this.rowHasChanged}
             selected={currentDateString}
             style={agendaStyle}
